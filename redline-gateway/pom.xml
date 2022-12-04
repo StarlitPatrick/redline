@@ -10,7 +10,7 @@
     </parent>
     <artifactId>redline-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Redline Gateway</name>
+    <name>redline-gateway</name>
     <description>Redline Gateway</description>
     <dependencies>
         <dependency>
