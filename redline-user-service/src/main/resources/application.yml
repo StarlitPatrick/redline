@@ -1,8 +1,8 @@
 server:
-  port: 1862
+  port: 1872
 spring:
   application:
-    name: redline-gateway
+    name: redline-user-service
   cloud:
     nacos:
       discovery:
