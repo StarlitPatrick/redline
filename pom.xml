@@ -30,6 +30,7 @@
         <dubbo.version>3.1.3</dubbo.version>
         <spring-cloud-gateway.version>3.1.4</spring-cloud-gateway.version>
         <mybatis-plus.version>3.5.2</mybatis-plus.version>
+        <hutool-all.version>5.8.10</hutool-all.version>
     </properties>
 
     <dependencies>
@@ -81,6 +82,11 @@
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo</artifactId>
             <version>${dubbo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool-all.version}</version>
         </dependency>
     </dependencies>
 
