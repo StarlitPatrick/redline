@@ -1,4 +1,3 @@
-USE `redline_user`;
 CREATE TABLE IF NOT EXISTS `user`
 (
     `id`          BIGINT UNSIGNED NOT NULL COMMENT 'id',
