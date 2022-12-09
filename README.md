@@ -1,2 +1,2 @@
-# redline
-Some Spring Cloud application examples on temporary.
+# Redline
+For paying off the technical debt.
