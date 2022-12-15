@@ -30,6 +30,7 @@
         <dubbo.version>3.1.3</dubbo.version>
         <spring-cloud-gateway.version>3.1.4</spring-cloud-gateway.version>
         <spring-tx.version>6.0.2</spring-tx.version>
+        <mybatis.version>3.5.11</mybatis.version>
         <mybatis-plus.version>3.5.2</mybatis-plus.version>
         <hutool-all.version>5.8.10</hutool-all.version>
     </properties>
@@ -102,6 +103,11 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-tx</artifactId>
                 <version>${spring-tx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>

@@ -1,8 +1,11 @@
 package cn.starlitpatrick.redline.userservice.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.starlitpatrick.redline.userservice.mapper.UserMapper;
 import cn.starlitpatrick.redline.userservice.pojo.dtos.UserDTO;
 import cn.starlitpatrick.redline.userservice.pojo.vos.UserVO;
 import cn.starlitpatrick.redline.userservice.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +18,9 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      * 新增用户
@@ -35,7 +41,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<UserVO> listUsers() {
-        return null;
+        return BeanUtil.copyToList(userMapper.selectList(), UserVO.class);
     }
 
     /**
