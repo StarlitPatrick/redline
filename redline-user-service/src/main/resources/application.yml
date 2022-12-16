@@ -12,3 +12,89 @@ spring:
         file-extension: yml
   config:
     import: nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+  datasource:
+    url: jdbc:mysql://${REDLINE_USER_SERVICE_MYSQL_IP:127.0.0.1}:${REDLINE_USER_SERVICE_MYSQL_PORT:1873}/${REDLINE_USER_SERVICE_MYSQL_DATABASE:redline_user}?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${REDLINE_USER_SERVICE_MYSQL_USERNAME:root}
+    password: ${REDLINE_USER_SERVICE_MYSQL_PASSWORD:redline}
+    # 链接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 连接池
+    druid:
+      # 初始连接数
+      initialSize: 5
+      # 最小空闲连接数
+      minIdle: 5
+      # 最大连接数
+      maxActive: 20
+      # 超时等待时间以毫秒为单位
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 300000
+      # 检测查询处理
+      validationQuery: SELECT 1 FROM DUAL
+      # 申请连接的时候检测，如果空闲时间大于 timeBetweenEvictionRunsMillis，执行 validationQuery 检测连接是否有效。
+      testWhileIdle: true
+      # 申请连接时执行 validationQuery 检测连接是否有效，做了这个配置会降低性能
+      testOnBorrow: false
+      # 归还连接时执行 validationQuery 检测连接是否有效，做了这个配置会降低性能
+      testOnReturn: false
+      # 是否缓存 preparedStatement，也就是 PSCache。PSCache 对支持游标的数据库性能提升巨大，比如说 oracle。在 mysql 下建议关闭
+      poolPreparedStatements: false
+      # 配置监控统计拦截的 filters，去掉后监控界面 sql 无法统计，"wall" 用于防火墙
+      filters: stat,wall,log4j
+      # 要启用 PSCache，必须配置大于 0，当大于 0 时，poolPreparedStatements 自动触发修改为 true。
+      # 在 Druid 中，不会存在 Oracle 下 PSCache 占用内存过多的问题，可以把这个数值配置大一些，比如说 100
+      maxPoolPreparedStatementPerConnectionSize: 20
+      # 合并多个 DruidDataSource 的监控数据
+      useGlobalDataSourceStat: true
+      # 通过 connectProperties 属性来打开 mergeSql 功能；慢 SQL 记录
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      # 自己配置监控统计拦截的 filter
+      filter:
+        # 开启 druid datasource 的状态监控
+        stat:
+          enabled: true
+          db-type: mysql
+          # 开启慢sql监控，超过2s 就认为是慢sql，记录到日志中
+          log-slow-sql: true
+          slow-sql-millis: 2000
+        # 日志监控，使用 slf4j 进行日志输出
+        slf4j:
+          enabled: true
+          statement-log-error-enabled: true
+          statement-create-after-log-enabled: false
+          statement-close-after-log-enabled: false
+          result-set-open-after-log-enabled: false
+          result-set-close-after-log-enabled: false
+      ########## 配置 WebStatFilter，用于采集 web 关联监控的数据 ##########
+      web-stat-filter:
+        enabled: true                   # 启动 StatFilter
+        url-pattern: /*                 # 过滤所有url
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" # 排除一些不必要的url
+        session-stat-enable: true       # 开启session统计功能
+        session-stat-max-count: 1000    # session的最大个数,默认100
+      ########## 配置 StatViewServlet（监控页面），用于展示 Druid 的统计信息 ##########
+      stat-view-servlet:
+        # 启用 StatViewServlet
+        enabled: true
+        # 访问内置监控页面的路径，内置监控页面的首页是 /druid/index.html
+        url-pattern: /druid/*
+        # 不允许清空统计数据,重新计算
+        reset-enable: false
+        # 配置监控页面访问用户名密码
+        login-username: admin
+        login-password: redline
+        # 允许访问的地址，如果allow没有配置或者为空，则允许所有访问
+        allow:
+        deny:
+
+mybatis:
+  # model的包
+  type-aliases-package: cn.starlitpatrick.redline.userservice.pojo.dos
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  configuration:
+    # 开启驼峰自动映射到下划线
+    map-underscore-to-camel-case: true
