@@ -1,7 +1,9 @@
 package cn.starlitpatrick.redline.userservice.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.IdUtil;
 import cn.starlitpatrick.redline.userservice.mapper.UserMapper;
+import cn.starlitpatrick.redline.userservice.pojo.dos.UserDO;
 import cn.starlitpatrick.redline.userservice.pojo.dtos.UserDTO;
 import cn.starlitpatrick.redline.userservice.pojo.vos.UserVO;
 import cn.starlitpatrick.redline.userservice.service.UserService;
@@ -31,7 +33,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserVO addUser(UserDTO user) {
-        return null;
+        UserDO userDO = new UserDO(
+                IdUtil.getSnowflakeNextId(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getNickname()
+        );
+        userMapper.insert(userDO);
+        return BeanUtil.toBean(userDO, UserVO.class);
     }
 
     /**

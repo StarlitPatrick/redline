@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.starlitpatrick.redline.userservice.mapper.UserMapper">
+    <insert id="insert">
+        INSERT INTO `user` (`id`, `username`, `password`, `nickname`)
+        VALUE (#{user.id}, #{user.username}, #{user.password}, #{user.nickname})
+    </insert>
+
+    <select id="selectById" resultType="cn.starlitpatrick.redline.userservice.pojo.dos.UserDO">
+        SELECT `id`, `username`, `password`, `nickname`, `create_time`, `update_time`
+        FROM `user`
+        WHERE `id` = #{id}
+    </select>
 
     <select id="selectList" resultType="cn.starlitpatrick.redline.userservice.pojo.dos.UserDO">
         SELECT `id`, `username`, `password`, `nickname`, `create_time`, `update_time`

@@ -37,4 +37,10 @@ public class UserDO {
 
     private Date updateTime;
 
+    public UserDO(Long id, String username, String password, String nickname) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.nickname = nickname;
+    }
 }
