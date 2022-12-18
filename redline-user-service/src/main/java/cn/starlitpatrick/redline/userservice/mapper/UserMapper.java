@@ -20,4 +20,7 @@ public interface UserMapper {
 
     List<UserDO> selectList();
 
+    void updateById(@Param("user") UserDO userDO);
+
+    void deleteById(@Param("id") Long id);
 }

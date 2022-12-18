@@ -17,4 +17,17 @@
         FROM `user`
     </select>
 
+    <update id="updateById">
+        UPDATE `user`
+        SET
+        `username` = #{user.username},
+        `password` = #{user.password},
+        `nickname` = #{user.nickname}
+        WHERE id = #{user.id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM `user`
+        WHERE id = #{id}
+    </delete>
 </mapper>

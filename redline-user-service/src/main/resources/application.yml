@@ -92,9 +92,5 @@ spring:
         deny:
 
 mybatis:
-  # model的包
   type-aliases-package: cn.starlitpatrick.redline.userservice.pojo.dos
   mapper-locations: classpath*:mapper/*Mapper.xml
-  configuration:
-    # 开启驼峰自动映射到下划线
-    map-underscore-to-camel-case: true

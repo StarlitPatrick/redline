@@ -61,8 +61,17 @@ public class UserServiceImpl implements UserService {
      * @return 更新后的用户信息
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public UserVO updateUser(Long id, UserDTO user) {
-        return null;
+        UserDO userDO = userMapper.selectById(id);
+        if (userDO == null) {
+            return null;
+        }
+        userDO.setUsername(user.getUsername());
+        userDO.setPassword(user.getPassword());
+        userDO.setNickname(user.getNickname());
+        userMapper.updateById(userDO);
+        return BeanUtil.toBean(userMapper.selectById(id), UserVO.class);
     }
 
     /**
@@ -72,7 +81,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void deleteUser(Long id) {
-
+        userMapper.deleteById(id);
     }
 
 }
