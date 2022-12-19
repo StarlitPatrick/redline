@@ -4,6 +4,7 @@ import cn.starlitpatrick.redline.userservice.pojo.dtos.UserDTO;
 import cn.starlitpatrick.redline.userservice.pojo.vos.UserVO;
 import cn.starlitpatrick.redline.userservice.service.UserService;
 import jakarta.annotation.Resource;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,12 +33,12 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserVO> updateUser(@PathVariable("id") Long id, @RequestBody UserDTO user) {
+    public ResponseEntity<UserVO> updateUser(@PathVariable("id") @NotNull Long id, @RequestBody UserDTO user) {
         return ResponseEntity.ok(userService.updateUser(id, user));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable("id") Long id) {
+    public ResponseEntity<?> deleteUser(@PathVariable("id") @NotNull Long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok(null);
     }
