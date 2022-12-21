@@ -1,0 +1,55 @@
+version: "3.8"
+services:
+  redline-nacos:
+    image: nacos/nacos-server:v2.2.0
+    container_name: redline-nacos
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9555:9555"
+    environment:
+      # 系统启动方式: cluster/standalone default: cluster
+      MODE: standalone
+      # 支持 IP 还是域名模式: hostname/ip default: ip
+      PREFER_HOST_MODE: ip
+      # 单机模式下支持MYSQL数据库: mysql/"" default: ""
+      SPRING_DATASOURCE_PLATFORM: mysql
+      MYSQL_SERVICE_HOST: 1.14.72.137
+      MYSQL_SERVICE_PORT: 8948
+      MYSQL_SERVICE_DB_NAME: redline_nacos
+      MYSQL_SERVICE_USER: nacos
+      MYSQL_SERVICE_PASSWORD: nacos
+      MYSQL_SERVICE_DB_PARAM: characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+      # -Xms
+      JVM_XMS: 256m
+      # -Xmx
+      JVM_XMX: 256m
+      # -Xmn
+      JVM_XMN: 128m
+      # 是否开启权限系统 default: false
+      NACOS_AUTH_ENABLE: true
+    depends_on:
+      redline-nacos-mysql:
+        condition: service_healthy
+  redline-nacos-mysql:
+    container_name: redline-nacos-mysql
+    image: mysql:8.0.31
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: redline_nacos
+      MYSQL_USER: nacos
+      MYSQL_PASSWORD: nacos
+    command:
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+    volumes:
+      - ./volumes/db/data:/var/lib/mysql
+      - ./volumes/db/config:/etc/mysql/conf.d
+      - ./initdb:/docker-entrypoint-initdb.d
+    ports:
+      - "8948:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10

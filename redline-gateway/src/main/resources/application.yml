@@ -5,10 +5,15 @@ spring:
     name: redline-gateway
   cloud:
     nacos:
+      server-addr: ${REDLINE_NACOS_SERVER_ADDR:127.0.0.1:8848}
+      username: ${REDLINE_NACOS_USERNAME:nacos}
+      password: ${REDLINE_NACOS_PASSWORD:nacos}
       discovery:
-        server-addr: 127.0.0.1:8848
+        username: ${spring.cloud.nacos.username}
+        password: ${spring.cloud.nacos.password}
       config:
-        server-addr: 127.0.0.1:8848
+        username: ${spring.cloud.nacos.username}
+        password: ${spring.cloud.nacos.password}
         file-extension: yml
   config:
     import: nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
