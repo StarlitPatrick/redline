@@ -34,8 +34,8 @@ services:
       redline-nacos-mysql:
         condition: service_healthy
   redline-nacos-mysql:
-    container_name: redline-nacos-mysql
     image: mysql:8.0.31
+    container_name: redline-nacos-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: redline_nacos

@@ -20,7 +20,7 @@ spring:
   datasource:
     url: jdbc:mysql://${REDLINE_USER_SERVICE_MYSQL_IP:127.0.0.1}:${REDLINE_USER_SERVICE_MYSQL_PORT:1102}/${REDLINE_USER_SERVICE_MYSQL_DATABASE:redline_user}?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ${REDLINE_USER_SERVICE_MYSQL_USERNAME:root}
+    username: ${REDLINE_USER_SERVICE_MYSQL_USERNAME:redline}
     password: ${REDLINE_USER_SERVICE_MYSQL_PASSWORD:redline}
     # 链接池
     type: com.alibaba.druid.pool.DruidDataSource
