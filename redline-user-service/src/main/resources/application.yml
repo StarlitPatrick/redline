@@ -1,11 +1,11 @@
 server:
-  port: 1872
+  port: 1002
 spring:
   application:
     name: redline-user-service
   cloud:
     nacos:
-      server-addr: ${REDLINE_NACOS_SERVER_ADDR:127.0.0.1:8848}
+      server-addr: ${REDLINE_NACOS_SERVER_ADDR:127.0.0.1:1848}
       username: ${REDLINE_NACOS_USERNAME:nacos}
       password: ${REDLINE_NACOS_PASSWORD:nacos}
       discovery:
@@ -18,7 +18,7 @@ spring:
   config:
     import: nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
   datasource:
-    url: jdbc:mysql://${REDLINE_USER_SERVICE_MYSQL_IP:127.0.0.1}:${REDLINE_USER_SERVICE_MYSQL_PORT:1873}/${REDLINE_USER_SERVICE_MYSQL_DATABASE:redline_user}?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=UTC
+    url: jdbc:mysql://${REDLINE_USER_SERVICE_MYSQL_IP:127.0.0.1}:${REDLINE_USER_SERVICE_MYSQL_PORT:1102}/${REDLINE_USER_SERVICE_MYSQL_DATABASE:redline_user}?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: ${REDLINE_USER_SERVICE_MYSQL_USERNAME:root}
     password: ${REDLINE_USER_SERVICE_MYSQL_PASSWORD:redline}

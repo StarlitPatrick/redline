@@ -12,6 +12,6 @@ services:
       - ./volumes/db/config:/etc/mysql/conf.d
       - ./initdb:/docker-entrypoint-initdb.d
     ports:
-      - 1873:3306
+      - 1102:3306
     environment:
       MYSQL_ROOT_PASSWORD: redline

@@ -4,8 +4,10 @@ services:
     image: nacos/nacos-server:v2.2.0
     container_name: redline-nacos
     ports:
-      - "8848:8848"
-      - "9848:9848"
+      - "1848:8848"
+      # gRPC
+      - "2848:9848"
+      # debug
       - "9555:9555"
     environment:
       # 系统启动方式: cluster/standalone default: cluster
