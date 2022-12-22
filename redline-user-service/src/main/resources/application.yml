@@ -49,7 +49,7 @@ spring:
       # 是否缓存 preparedStatement，也就是 PSCache。PSCache 对支持游标的数据库性能提升巨大，比如说 oracle。在 mysql 下建议关闭
       poolPreparedStatements: false
       # 配置监控统计拦截的 filters，去掉后监控界面 sql 无法统计，"wall" 用于防火墙
-      filters: stat,wall,log4j
+#      filters: stat,wall,log4j
       # 要启用 PSCache，必须配置大于 0，当大于 0 时，poolPreparedStatements 自动触发修改为 true。
       # 在 Druid 中，不会存在 Oracle 下 PSCache 占用内存过多的问题，可以把这个数值配置大一些，比如说 100
       maxPoolPreparedStatementPerConnectionSize: 20

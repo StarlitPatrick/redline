@@ -3,11 +3,11 @@ package cn.starlitpatrick.redline.userservice.controller;
 import cn.starlitpatrick.redline.userservice.pojo.dtos.UserDTO;
 import cn.starlitpatrick.redline.userservice.pojo.vos.UserVO;
 import cn.starlitpatrick.redline.userservice.service.UserService;
-import jakarta.annotation.Resource;
-import jakarta.validation.constraints.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    @Resource
+    @Autowired
     private UserService userService;
 
     @PostMapping()
