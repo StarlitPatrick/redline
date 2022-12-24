@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 services:
   redline-nacos:
     image: nacos/nacos-server:v2.2.0
@@ -47,7 +47,7 @@ services:
     volumes:
       - ./volumes/db/data:/var/lib/mysql
       - ./volumes/db/config:/etc/mysql/conf.d
-      - ./initdb:/docker-entrypoint-initdb.d
+      - ./resources/sql/mysql-schema.sql:/docker-entrypoint-initdb.d
     ports:
       - "8948:3306"
     healthcheck:
