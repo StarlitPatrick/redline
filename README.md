@@ -10,6 +10,7 @@ For paying off the technical debt.
 ## Default Ports  
 - 1848: `redline-nacos(core)`  
 - 2848: `redline-nacos(gRPC)`  
+- 1948: `redline-nacos-db`  
 - 1001: `redline-gateway`  
 - 1002: `redline-user-service`  
 - 1102: `redline-user-db`  
