@@ -23,11 +23,15 @@ services:
       MYSQL_SERVICE_PASSWORD: nacos
       MYSQL_SERVICE_DB_PARAM: characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
       # -Xms
-      JVM_XMS: 256m
+      JVM_XMS: 128m
       # -Xmx
-      JVM_XMX: 256m
+      JVM_XMX: 128m
       # -Xmn
-      JVM_XMN: 128m
+      JVM_XMN: 64m
+      # -XX:MetaspaceSize
+      JVM_MS: 8m
+      # -XX:MaxMetaspaceSize
+      JVM_MMS: 32m
       # 是否开启权限系统 default: false
       NACOS_AUTH_ENABLE: true
     depends_on:
