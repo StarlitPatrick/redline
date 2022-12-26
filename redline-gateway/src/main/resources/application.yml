@@ -5,7 +5,7 @@ spring:
     name: redline-gateway
   cloud:
     nacos:
-      server-addr: ${REDLINE_NACOS_SERVER_ADDR:127.0.0.1:1848}
+      server-addr: ${REDLINE_NACOS_SERVER_ADDR:127.0.0.1:1000}
       username: ${REDLINE_NACOS_USERNAME:nacos}
       password: ${REDLINE_NACOS_PASSWORD:nacos}
       discovery:

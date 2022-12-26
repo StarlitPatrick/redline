@@ -4,9 +4,9 @@ services:
     image: nacos/nacos-server:v2.2.0
     container_name: redline-nacos
     ports:
-      - "1848:8848"
+      - "1000:8848"
       # gRPC
-      - "2848:9848"
+      - "2000:9848"
       # debug
       - "9555:9555"
     environment:
@@ -17,7 +17,7 @@ services:
       # 单机模式下支持MYSQL数据库: mysql/"" default: ""
       SPRING_DATASOURCE_PLATFORM: mysql
       MYSQL_SERVICE_HOST: 1.14.72.137
-      MYSQL_SERVICE_PORT: 1948
+      MYSQL_SERVICE_PORT: 1100
       MYSQL_SERVICE_DB_NAME: redline_nacos
       MYSQL_SERVICE_USER: nacos
       MYSQL_SERVICE_PASSWORD: nacos
@@ -49,7 +49,7 @@ services:
       - ./volumes/db/config:/etc/mysql/conf.d
       - ./resources/sql/mysql-schema.sql:/docker-entrypoint-initdb.d
     ports:
-      - "1948:3306"
+      - "1100:3306"
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
       interval: 5s
