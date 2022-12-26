@@ -15,5 +15,13 @@ spring:
         username: ${spring.cloud.nacos.username}
         password: ${spring.cloud.nacos.password}
         file-extension: yml
+    gateway:
+      routes:
+        - id: redline-user-service
+          uri: lb://redline-user-service
+          predicates:
+            - Path=/redline-user-service/**
+          filters:
+            - StripPrefix=1
   config:
     import: nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
