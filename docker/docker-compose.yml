@@ -49,9 +49,9 @@ services:
       --character-set-server=utf8mb4
       --collation-server=utf8mb4_general_ci
     volumes:
-      - ./redline-nacos/data:/var/lib/mysql
-      - ./redline-nacos/config:/etc/mysql/conf.d
-      - ./redline-nacos/initdb:/docker-entrypoint-initdb.d
+      - ./redline-nacos-mysql/data:/var/lib/mysql
+      - ./redline-nacos-mysql/config:/etc/mysql/conf.d
+      - ./redline-nacos-mysql/initdb:/docker-entrypoint-initdb.d
     ports:
       - "1100:3306"
     healthcheck:
