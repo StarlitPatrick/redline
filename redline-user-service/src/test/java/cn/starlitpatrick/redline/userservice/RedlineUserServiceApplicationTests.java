@@ -1,4 +1,4 @@
-package cn.starlitpatrick.userservice;
+package cn.starlitpatrick.redline.userservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
