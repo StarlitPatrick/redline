@@ -59,6 +59,26 @@ services:
       interval: 5s
       timeout: 10s
       retries: 10
+  redline-gateway:
+    image: openjdk:17-oracle
+    container_name: redline-gateway
+    env_file:
+      - redline-services.env
+    ports:
+      - "1001:1001"
+    volumes:
+      - ./redline-gateway/app/app.jar:/app.jar
+    entrypoint: [ "java", "-jar", "/app.jar" ]
+  redline-user-service:
+    image: openjdk:17-oracle
+    container_name: redline-user-service
+    env_file:
+      - redline-services.env
+    ports:
+      - "1002:1002"
+    volumes:
+      - ./redline-user-service/app/app.jar:/app.jar
+    entrypoint: [ "java", "-jar", "/app.jar" ]
   redline-user-db:
     image: mysql:8.0.31
     container_name: redline-user-db

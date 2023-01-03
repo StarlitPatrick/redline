@@ -2,3 +2,5 @@ redline-nacos-mysql/data
 redline-nacos-mysql/config
 redline-user-db/data
 redline-user-db/config
+app.jar
+redline-services.env
