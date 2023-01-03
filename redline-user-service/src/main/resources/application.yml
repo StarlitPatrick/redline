@@ -16,7 +16,7 @@ spring:
         password: ${spring.cloud.nacos.password}
         file-extension: yml
   config:
-    import: nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+    import: optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
   datasource:
     url: jdbc:mysql://${REDLINE_USER_SERVICE_MYSQL_IP:127.0.0.1}:${REDLINE_USER_SERVICE_MYSQL_PORT:1102}/${REDLINE_USER_SERVICE_MYSQL_DATABASE:redline_user}?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
