@@ -97,3 +97,13 @@ services:
       MYSQL_DATABASE: redline_user
       MYSQL_USER: redline
       MYSQL_PASSWORD: redline
+  redline-nginx:
+    image: nginx:1.23
+    container_name: redline-nginx
+    env_file:
+      - redline-services.env
+    volumes:
+      - ./redline-nginx/templates:/etc/nginx/templates
+      - ./redline-nginx/static:/usr/share/nginx/html
+    ports:
+      - "1862:80"

@@ -1,0 +1,9 @@
+server {
+    listen      80;
+    server_name localhost;
+
+    # Gateway apis
+    location /api/ {
+        proxy_pass http://${REDLINE_GATEWAY_ADDR}/;
+    }
+}
