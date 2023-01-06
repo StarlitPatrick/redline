@@ -6,4 +6,12 @@ server {
     location /api/ {
         proxy_pass http://${REDLINE_GATEWAY_ADDR}/;
     }
+
+    location /nacos/ {
+        proxy_pass http://${REDLINE_NACOS_SERVER_ADDR}/nacos/;
+    }
+
+    location /portainer/ {
+        proxy_pass https://${REDLINE_PORTAINER_SERVER_ADDR}/;
+    }
 }
