@@ -16,27 +16,29 @@ import java.util.List;
  * @author tianyuheng
  */
 @RestController
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping("/user")
+    @PostMapping
     public ResponseEntity<UserVO> addUser(@RequestBody UserDTO user) {
         return ResponseEntity.ok(userService.addUser(user));
     }
 
-    @GetMapping("/users")
+    @GetMapping
     public ResponseEntity<List<UserVO>> listUsers() {
         return ResponseEntity.ok(userService.listUsers());
     }
 
-    @PutMapping("/users/{userId}")
-    public ResponseEntity<UserVO> updateUser(@PathVariable("userId") @NotNull Long id, @RequestBody UserDTO user) {
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserVO> updateUser(@PathVariable("userId") @NotNull Long id,
+                                             @RequestBody UserDTO user) {
         return ResponseEntity.ok(userService.updateUser(id, user));
     }
 
-    @DeleteMapping("/users/{userId}")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<?> deleteUser(@PathVariable("userId") @NotNull Long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok(null);
