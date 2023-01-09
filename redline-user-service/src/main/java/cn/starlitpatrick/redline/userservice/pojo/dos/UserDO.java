@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,7 +16,9 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDO {
+public class UserDO implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -5117822334866212289L;
 
     private Long id;
 

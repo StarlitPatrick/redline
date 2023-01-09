@@ -1,6 +1,8 @@
 package cn.starlitpatrick.redline.userservice.pojo.dtos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -11,6 +13,8 @@ import java.io.Serializable;
  * @author tianyuheng
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = -7954734945733424980L;
@@ -29,4 +33,5 @@ public class UserDTO implements Serializable {
      * 昵称
      */
     private String nickname;
+
 }

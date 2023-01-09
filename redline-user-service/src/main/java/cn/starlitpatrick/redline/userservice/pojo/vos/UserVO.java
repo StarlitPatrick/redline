@@ -1,6 +1,8 @@
 package cn.starlitpatrick.redline.userservice.pojo.vos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -11,6 +13,8 @@ import java.io.Serializable;
  * @author tianyuheng
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserVO implements Serializable {
     @Serial
     private static final long serialVersionUID = 7829095819526371277L;
