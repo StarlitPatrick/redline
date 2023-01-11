@@ -8,7 +8,6 @@ import cn.starlitpatrick.redline.userservice.pojo.dtos.UserDTO;
 import cn.starlitpatrick.redline.userservice.pojo.vos.UserVO;
 import cn.starlitpatrick.redline.userservice.service.UserService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -31,7 +30,6 @@ public class UserServiceImpl implements UserService {
      * @return 新增的用户 VO
      */
     @Override
-    @Transactional
     public UserVO addUser(UserDTO user) {
         UserDO userDO = new UserDO(
                 IdUtil.getSnowflakeNextId(),
@@ -61,7 +59,6 @@ public class UserServiceImpl implements UserService {
      * @return 更新后的用户信息
      */
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public UserVO updateUser(Long id, UserDTO user) {
         UserDO userDO = userMapper.selectById(id);
         if (userDO == null) {
