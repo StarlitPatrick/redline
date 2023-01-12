@@ -1,4 +1,4 @@
-package cn.starlitpatrick.redline.userservice.pojo.dtos;
+package cn.starlitpatrick.redline.userservice.pojo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package cn.starlitpatrick.redline.userservice.pojo.dos;
+package cn.starlitpatrick.redline.userservice.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDO implements Serializable {
+public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = -5117822334866212289L;
 
@@ -41,7 +41,7 @@ public class UserDO implements Serializable {
 
     private Date updateTime;
 
-    public UserDO(Long id, String username, String password, String nickname) {
+    public User(Long id, String username, String password, String nickname) {
         this.id = id;
         this.username = username;
         this.password = password;

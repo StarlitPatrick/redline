@@ -6,13 +6,13 @@
         VALUE (#{user.id}, #{user.username}, #{user.password}, #{user.nickname})
     </insert>
 
-    <select id="selectById" resultType="cn.starlitpatrick.redline.userservice.pojo.dos.UserDO">
+    <select id="selectById" resultType="cn.starlitpatrick.redline.userservice.entity.User">
         SELECT `id`, `username`, `password`, `nickname`, `create_time`, `update_time`
         FROM `user`
         WHERE `id` = #{id}
     </select>
 
-    <select id="selectList" resultType="cn.starlitpatrick.redline.userservice.pojo.dos.UserDO">
+    <select id="selectList" resultType="cn.starlitpatrick.redline.userservice.entity.User">
         SELECT `id`, `username`, `password`, `nickname`, `create_time`, `update_time`
         FROM `user`
     </select>

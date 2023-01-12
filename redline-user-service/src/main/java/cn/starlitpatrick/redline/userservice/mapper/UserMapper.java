@@ -1,6 +1,6 @@
 package cn.starlitpatrick.redline.userservice.mapper;
 
-import cn.starlitpatrick.redline.userservice.pojo.dos.UserDO;
+import cn.starlitpatrick.redline.userservice.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -14,13 +14,13 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    void insert(@Param("user") UserDO userDO);
+    void insert(@Param("user") User user);
 
-    UserDO selectById(@Param("id") Long id);
+    User selectById(@Param("id") Long id);
 
-    List<UserDO> selectList();
+    List<User> selectList();
 
-    void updateById(@Param("user") UserDO userDO);
+    void updateById(@Param("user") User user);
 
     void deleteById(@Param("id") Long id);
 }

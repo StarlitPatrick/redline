@@ -3,9 +3,9 @@ package cn.starlitpatrick.redline.userservice.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.starlitpatrick.redline.userservice.mapper.UserMapper;
-import cn.starlitpatrick.redline.userservice.pojo.dos.UserDO;
-import cn.starlitpatrick.redline.userservice.pojo.dtos.UserDTO;
-import cn.starlitpatrick.redline.userservice.pojo.vos.UserVO;
+import cn.starlitpatrick.redline.userservice.entity.User;
+import cn.starlitpatrick.redline.userservice.pojo.dto.UserDTO;
+import cn.starlitpatrick.redline.userservice.pojo.vo.UserVO;
 import cn.starlitpatrick.redline.userservice.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserVO addUser(UserDTO user) {
-        UserDO userDO = new UserDO(
+        User userDO = new User(
                 IdUtil.getSnowflakeNextId(),
                 user.getUsername(),
                 user.getPassword(),
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserVO updateUser(Long id, UserDTO user) {
-        UserDO userDO = userMapper.selectById(id);
+        User userDO = userMapper.selectById(id);
         if (userDO == null) {
             return null;
         }

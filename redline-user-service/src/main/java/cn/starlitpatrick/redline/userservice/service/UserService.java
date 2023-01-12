@@ -1,7 +1,7 @@
 package cn.starlitpatrick.redline.userservice.service;
 
-import cn.starlitpatrick.redline.userservice.pojo.dtos.UserDTO;
-import cn.starlitpatrick.redline.userservice.pojo.vos.UserVO;
+import cn.starlitpatrick.redline.userservice.pojo.dto.UserDTO;
+import cn.starlitpatrick.redline.userservice.pojo.vo.UserVO;
 
 import java.util.List;
 

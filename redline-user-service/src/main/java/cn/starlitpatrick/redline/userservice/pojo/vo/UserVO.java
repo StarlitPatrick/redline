@@ -1,4 +1,4 @@
-package cn.starlitpatrick.redline.userservice.pojo.vos;
+package cn.starlitpatrick.redline.userservice.pojo.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

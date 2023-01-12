@@ -1,7 +1,7 @@
 package cn.starlitpatrick.redline.userservice.controller;
 
-import cn.starlitpatrick.redline.userservice.pojo.dtos.UserDTO;
-import cn.starlitpatrick.redline.userservice.pojo.vos.UserVO;
+import cn.starlitpatrick.redline.userservice.pojo.dto.UserDTO;
+import cn.starlitpatrick.redline.userservice.pojo.vo.UserVO;
 import cn.starlitpatrick.redline.userservice.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
