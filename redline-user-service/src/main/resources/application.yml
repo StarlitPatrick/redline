@@ -96,6 +96,5 @@ spring:
         allow:
         deny:
 
-mybatis:
-  type-aliases-package: cn.starlitpatrick.redline.userservice.pojo.dos
+mybatis-plus:
   mapper-locations: classpath*:mapper/*Mapper.xml

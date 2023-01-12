@@ -34,7 +34,7 @@
         <mysql-connector-java.version>8.0.31</mysql-connector-java.version>
         <druid-spring-boot-starter.version>1.2.15</druid-spring-boot-starter.version>
         <mybatis-spring-boot-starter.version>2.3.0</mybatis-spring-boot-starter.version>
-        <mybatis-plus.version>3.5.2</mybatis-plus.version>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
     </properties>
 
     <dependencies>

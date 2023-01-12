@@ -1,7 +1,9 @@
 package cn.starlitpatrick.redline.userservice.service;
 
+import cn.starlitpatrick.redline.userservice.entity.User;
 import cn.starlitpatrick.redline.userservice.pojo.dto.UserDTO;
 import cn.starlitpatrick.redline.userservice.pojo.vo.UserVO;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 
@@ -10,7 +12,7 @@ import java.util.List;
  *
  * @author tianyuheng
  */
-public interface UserService {
+public interface UserService extends IService<User> {
 
     /**
      * 新增用户
@@ -36,10 +38,4 @@ public interface UserService {
      */
     UserVO updateUser(Long id, UserDTO user);
 
-    /**
-     * 删除用户
-     *
-     * @param id 用户 id
-     */
-    void deleteUser(Long id);
 }

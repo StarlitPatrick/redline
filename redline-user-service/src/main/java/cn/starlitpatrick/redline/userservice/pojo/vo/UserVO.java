@@ -1,5 +1,6 @@
 package cn.starlitpatrick.redline.userservice.pojo.vo;
 
+import cn.starlitpatrick.redline.userservice.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,5 +31,11 @@ public class UserVO implements Serializable {
      * 昵称
      */
     private String nickname;
+
+    public UserVO(User user) {
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.nickname = user.getUsername();
+    }
 
 }

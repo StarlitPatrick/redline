@@ -1,16 +1,17 @@
 package cn.starlitpatrick.redline.userservice.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.IdUtil;
-import cn.starlitpatrick.redline.userservice.mapper.UserMapper;
 import cn.starlitpatrick.redline.userservice.entity.User;
+import cn.starlitpatrick.redline.userservice.mapper.UserMapper;
 import cn.starlitpatrick.redline.userservice.pojo.dto.UserDTO;
 import cn.starlitpatrick.redline.userservice.pojo.vo.UserVO;
 import cn.starlitpatrick.redline.userservice.service.UserService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 用户业务层
@@ -18,27 +19,24 @@ import java.util.List;
  * @author tianyuheng
  */
 @Service
-public class UserServiceImpl implements UserService {
-
-    @Resource
-    private UserMapper userMapper;
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
     /**
      * 新增用户
      *
-     * @param user 用户信息
+     * @param userDTO 用户信息
      * @return 新增的用户 VO
      */
     @Override
-    public UserVO addUser(UserDTO user) {
-        User userDO = new User(
+    public UserVO addUser(UserDTO userDTO) {
+        User user = new User(
                 IdUtil.getSnowflakeNextId(),
-                user.getUsername(),
-                user.getPassword(),
-                user.getNickname()
+                userDTO.getUsername(),
+                userDTO.getPassword(),
+                userDTO.getNickname()
         );
-        userMapper.insert(userDO);
-        return BeanUtil.toBean(userDO, UserVO.class);
+        this.save(user);
+        return new UserVO(user);
     }
 
     /**
@@ -48,37 +46,27 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<UserVO> listUsers() {
-        return BeanUtil.copyToList(userMapper.selectList(), UserVO.class);
+        return this.list().stream().map(UserVO::new).collect(Collectors.toList());
     }
 
     /**
      * 更新用户信息
      *
      * @param id   用户 id
-     * @param user 用户信息
+     * @param userDTO 用户信息
      * @return 更新后的用户信息
      */
     @Override
-    public UserVO updateUser(Long id, UserDTO user) {
-        User userDO = userMapper.selectById(id);
-        if (userDO == null) {
+    @Transactional(rollbackFor = Exception.class)
+    public UserVO updateUser(Long id, UserDTO userDTO) {
+        User user = this.getById(id);
+        if (user == null) {
+            // todo throw exception
             return null;
         }
-        userDO.setUsername(user.getUsername());
-        userDO.setPassword(user.getPassword());
-        userDO.setNickname(user.getNickname());
-        userMapper.updateById(userDO);
-        return BeanUtil.toBean(userMapper.selectById(id), UserVO.class);
-    }
-
-    /**
-     * 删除用户
-     *
-     * @param id 用户 id
-     */
-    @Override
-    public void deleteUser(Long id) {
-        userMapper.deleteById(id);
+        user.update(userDTO);
+        this.updateById(user);
+        return new UserVO(this.getById(user.getId()));
     }
 
 }

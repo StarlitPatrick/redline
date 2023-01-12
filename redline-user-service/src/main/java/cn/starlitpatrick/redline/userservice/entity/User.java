@@ -1,5 +1,6 @@
 package cn.starlitpatrick.redline.userservice.entity;
 
+import cn.starlitpatrick.redline.userservice.pojo.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,5 +47,11 @@ public class User implements Serializable {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
+    }
+
+    public void update(UserDTO userDTO) {
+        this.username = userDTO.getUsername();
+        this.password = userDTO.getPassword();
+        this.nickname = userDTO.getNickname();
     }
 }
