@@ -3,6 +3,7 @@ For paying off the technical debt.
 
 ## Dependencies  
 - Docker  
+- Docker Compose v2  
 - JDK 17  
 - Maven  
 - `redline-nacos` docker container needs **x86_64 arch**
@@ -14,3 +15,11 @@ For paying off the technical debt.
 - 1001: `redline-gateway`  
 - 1002: `redline-user-service`  
 - 1102: `redline-user-db`  
+
+## Run
+### Docker
+```shell
+cd docker
+./install.sh
+docker compose up -d
+```
