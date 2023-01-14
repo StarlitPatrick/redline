@@ -37,6 +37,12 @@ services:
     depends_on:
       redline-nacos-mysql:
         condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "127.0.0.1", "8848" ]
+      interval: 5s
+      timeout: 5s
+      start_period: 10s
+      retries: 5
   redline-nacos-mysql:
     image: mysql:8.0.31
     container_name: redline-nacos-mysql
@@ -55,7 +61,7 @@ services:
     ports:
       - "1100:3306"
     healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 5s
       timeout: 10s
       retries: 10
@@ -69,6 +75,15 @@ services:
     volumes:
       - ./redline-gateway/app/app.jar:/app.jar
     entrypoint: [ "java", "-jar", "/app.jar" ]
+    depends_on:
+      redline-nacos:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:1001/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      start_period: 10s
+      retries: 5
   redline-user-service:
     image: openjdk:17-oracle
     container_name: redline-user-service
@@ -79,6 +94,17 @@ services:
     volumes:
       - ./redline-user-service/app/app.jar:/app.jar
     entrypoint: [ "java", "-jar", "/app.jar" ]
+    depends_on:
+      redline-nacos:
+        condition: service_healthy
+      redline-user-db:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:1002/actuator/health" ]
+      interval: 5s
+      timeout: 5s
+      start_period: 10s
+      retries: 5
   redline-user-db:
     image: mysql:8.0.31
     container_name: redline-user-db
@@ -97,6 +123,11 @@ services:
       MYSQL_DATABASE: redline_user
       MYSQL_USER: redline
       MYSQL_PASSWORD: redline
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
   redline-nginx:
     image: nginx:1.23
     container_name: redline-nginx
